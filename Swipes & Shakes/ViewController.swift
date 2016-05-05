@@ -12,7 +12,40 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        // Swipes
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: "swiped:")
+        swipeRight.direction = UISwipeGestureRecognizerDirection.Right
+        self.view.addGestureRecognizer(swipeRight)
+        
+        let swipeUp = UISwipeGestureRecognizer(target: self, action: "swiped:")
+        swipeUp.direction = UISwipeGestureRecognizerDirection.Up
+        self.view.addGestureRecognizer(swipeUp)
+        
+    }
+    
+    func swiped(gesture: UISwipeGestureRecognizer){
+        
+        if let swipeGesture: UISwipeGestureRecognizer = gesture {
+            
+            switch swipeGesture.direction {
+                case UISwipeGestureRecognizerDirection.Right: print("Swiped Right!")
+                case UISwipeGestureRecognizerDirection.Up: print("Swiped Up!")
+                default: break
+            }
+        }
+    }
+    
+    // Shakes
+    
+    override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent?) {
+        
+        if event?.subtype == UIEventSubtype.MotionShake {
+            
+            print("Device was shaken!")
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
